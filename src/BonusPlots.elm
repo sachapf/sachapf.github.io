@@ -45,7 +45,7 @@ update msg model =
 plotFiles : List String
 plotFiles =
   [ "sfh_Z_samples_fsps_mastar_Manga_1-231870.png"
-  , "inference_SFH_metallicity_7565-56809-0737_fsps.gif"
+  , "inference_SFH_metallicity_4.gif"
   , "spectrum_diffusion_process_7565-56809-0737_fsps.gif"
   ]
 
