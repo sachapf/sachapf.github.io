@@ -59,5 +59,5 @@ routeParser =
   oneOf
     (List.map
         (\p -> Url.Parser.map (Tuple.second p).page (Url.Parser.s (Tuple.first p)) )
-        pageList
+        pageList ++ [ ( "#bonusplots", PageInfo "Bonus Plots" BonusPlots ) ]
     )
