@@ -22,23 +22,28 @@ type Page
   | Redshift
   | CV
   | APITest
+  | BonusPlots
 
 
 viewTabs : Page -> Html msg
 viewTabs page =
     div []
         [ Tab.tabsWrapper
-            ( List.map (\p ->
-                a
-                [ if (Tuple.second p).page == page then Tab.activeCss else Tab.inactiveCss
-                , href (Tuple.first p)
-                ]
-                [h3 [] [ text (Tuple.second p).name ] ]
+            ( List.map
+                (\p ->
+                    a
+                        [ if (Tuple.second p).page == page then
+                            Tab.activeCss
+
+                          else
+                            Tab.inactiveCss
+                        , href (Tuple.first p)
+                        ]
+                        [ h3 [] [ text (Tuple.second p).name ] ]
                 )
-                pageList
+                navPageList
             )
         ]
-
 
 type alias PageInfo =
   { name : String
@@ -46,10 +51,16 @@ type alias PageInfo =
   }
 
 
-pageList: List (String, PageInfo)
-pageList = [ ("", PageInfo "Home"  Main), ( "#Experience", PageInfo "Experience" CV) , ("#misc", PageInfo "Misc" APITest)] -- ("#redshift", Redshift),
+navPageList: List (String, PageInfo)
+navPageList = [ ("", PageInfo "Home"  Main), ( "#Experience", PageInfo "Experience" CV) , ("#misc", PageInfo "Misc" APITest)] -- ("#redshift", Redshift),
 
-pageMap: Dict String PageInfo
+pageList : List (String, PageInfo)
+pageList =
+  navPageList
+    ++ [ ( "#bonusplots", PageInfo "Bonus Plots" BonusPlots ) ]
+
+
+pageMap : Dict String PageInfo
 pageMap =
   Dict.fromList pageList
 
@@ -58,6 +69,10 @@ routeParser : Parser (Page -> a) a
 routeParser =
   oneOf
     (List.map
-        (\p -> Url.Parser.map (Tuple.second p).page (Url.Parser.s (Tuple.first p)) )
-        pageList ++ [ ( "#bonusplots", PageInfo "Bonus Plots" BonusPlots ) ]
+        (\p ->
+            Url.Parser.map
+                (Tuple.second p).page
+                (Url.Parser.s (Tuple.first p))
+        )
+        pageList
     )

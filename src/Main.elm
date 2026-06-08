@@ -15,6 +15,7 @@ import MainPage
 import Navigation exposing (..)
 import APIPage
 import CVPage
+import BonusPlots
 
 -- MAIN
 
@@ -40,6 +41,7 @@ type alias Model =
   , mainModel : (Maybe MainPage.Model)
   , apiModel : (Maybe APIPage.Model )
   , cvModel : (Maybe CVPage.Model)
+  , bonusPlotsModel : (Maybe BonusPlots.Model)
   , message : Maybe String
   , currentPage : Page
   }
@@ -49,7 +51,7 @@ init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url key =
   let
     -- ( mdl, msg ) = MainPage.init ()
-    ( mdl, msg ) = update (UrlChanged url) (Model key url Nothing Nothing Nothing Nothing Main )
+    ( mdl, msg ) = update (UrlChanged url) (Model key url Nothing Nothing Nothing Nothing Nothing Main )
   in
   ( mdl , msg ) -- Cmd.map IndexPage msg
 
@@ -64,6 +66,7 @@ type Msg
   | MainMsg MainPage.Msg
   | APIMsg APIPage.Msg
   | CVMsg CVPage.Msg
+  | BPMsg BonusPlots.Msg
 
 
 -- VIEW
@@ -112,6 +115,12 @@ update msg model =
                 in
                 ({ model | url = url, cvModel = Just m, currentPage = CV }, Cmd.map CVMsg c )
 
+              BonusPlots ->
+                let
+                  (m,c) = BonusPlots.init ()
+                in
+                ({ model | url = url, bonusPlotsModel = Just m, currentPage = BonusPlots }, Cmd.map BPMsg c )
+
           _ ->
             let
               (m, c) = MainPage.init ()
@@ -145,6 +154,17 @@ update msg model =
                         (m, cmd) = CVPage.update c mdl
                       in
                       ({ model | cvModel = Just m }, Cmd.map CVMsg cmd)
+
+                    Nothing ->
+                      ( model, Cmd.none )
+
+    BPMsg c ->
+      case model.bonusPlotsModel of
+                    Just mdl ->
+                      let
+                        (m, cmd) = BonusPlots.update c mdl
+                      in
+                      ({ model | bonusPlotsModel = Just m }, Cmd.map BPMsg cmd)
 
                     Nothing ->
                       ( model, Cmd.none )
@@ -196,6 +216,12 @@ view model =
               Main ->
                 case model.mainModel of
                   Just mmd -> toUnstyled (MainPage.view mmd) |> Html.map (MainMsg)
+                  Nothing -> text "Page load fail"
+
+              BonusPlots ->
+                case model.bonusPlotsModel of
+                  Just bpMdl ->
+                    (toUnstyled (BonusPlots.view bpMdl) |> Html.map BPMsg)
                   Nothing -> text "Page load fail"
             )
         ] |> List.map toUnstyled
