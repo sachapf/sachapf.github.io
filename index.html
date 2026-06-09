@@ -9867,67 +9867,108 @@ var $rtfeldman$elm_css$Css$padding = $rtfeldman$elm_css$Css$prop1('padding');
 var $rtfeldman$elm_css$Css$paddingBottom = $rtfeldman$elm_css$Css$prop1('padding-bottom');
 var $rtfeldman$elm_css$Css$PercentageUnits = {$: 'PercentageUnits'};
 var $rtfeldman$elm_css$Css$pct = A2($rtfeldman$elm_css$Css$Internal$lengthConverter, $rtfeldman$elm_css$Css$PercentageUnits, '%');
-var $author$project$BonusPlots$plotFiles = _List_fromArray(
-	[
-		{file: 'Files/bonus_plots/example_MaNGA_samples_1-623722.png', header: 'Example MaNGA SFH and Z Samples for 1-623722'},
-		{file: 'Files/bonus_plots/inference_SFH_metallicity_4.gif', header: 'Diffusion Process for SFH/MH Inference - samples'},
-		{file: 'Files/bonus_plots/spectrum_diffusion_process_7565-56809-0737_fsps.gif', header: 'Diffusion Process for SFH/MH Inference - spectrum'},
-		{file: 'Files/bonus_plots/spectrum_diffusion_process_7565-56809-0737_fsps.gif', header: 'Diffusion Process for SFH/MH Inference - spectrum'},
-		{file: 'Files/bonus_plots/chi2_TNG_train_vs_test.png', header: 'PQMass Chi2 Comparison: TNG Train vs Test'},
-		{file: 'Files/bonus_plots/chi2_test_300_0_TNG_vs_test.png', header: 'PQMass Chi2 Comparison: Model Samples vs Test'},
-		{file: 'Files/bonus_plots/chi2_tng_vs_eagle.png', header: 'PQMass Chi2 Comparison: TNG vs Eagle'}
-	]);
+var $rtfeldman$elm_css$Css$margin = $rtfeldman$elm_css$Css$prop1('margin');
 var $rtfeldman$elm_css$Css$maxWidth = $rtfeldman$elm_css$Css$prop1('max-width');
+var $rtfeldman$elm_css$Css$textAlign = function (fn) {
+	return A3(
+		$rtfeldman$elm_css$Css$Internal$getOverloadedProperty,
+		'textAlign',
+		'text-align',
+		fn($rtfeldman$elm_css$Css$Internal$lengthForOverloadedProperty));
+};
 var $rtfeldman$elm_css$Css$width = $rtfeldman$elm_css$Css$prop1('width');
-var $author$project$BonusPlots$viewPlot = function (plot) {
-	return A2(
-		$rtfeldman$elm_css$Html$Styled$div,
-		_List_fromArray(
-			[
-				$rtfeldman$elm_css$Html$Styled$Attributes$css(
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Css$displayFlex,
-						$rtfeldman$elm_css$Css$flexDirection($rtfeldman$elm_css$Css$column),
-						$rtfeldman$elm_css$Css$alignItems($rtfeldman$elm_css$Css$center),
-						$rtfeldman$elm_css$Css$paddingBottom(
-						$rtfeldman$elm_css$Css$px(30))
-					]))
-			]),
-		_List_fromArray(
+var $rtfeldman$elm_css$Css$UnitlessInteger = {$: 'UnitlessInteger'};
+var $rtfeldman$elm_css$Css$zero = {length: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAuto: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrAutoOrCoverOrContain: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNone: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNoneOrMinMaxDimension: $rtfeldman$elm_css$Css$Structure$Compatible, lengthOrNumber: $rtfeldman$elm_css$Css$Structure$Compatible, number: $rtfeldman$elm_css$Css$Structure$Compatible, numericValue: 0, outline: $rtfeldman$elm_css$Css$Structure$Compatible, unitLabel: '', units: $rtfeldman$elm_css$Css$UnitlessInteger, value: '0'};
+var $author$project$BonusPlots$viewDescription = function (maybeDescription) {
+	if (maybeDescription.$ === 'Just') {
+		var description = maybeDescription.a;
+		return _List_fromArray(
 			[
 				A2(
-				$rtfeldman$elm_css$Html$Styled$h3,
+				$rtfeldman$elm_css$Html$Styled$p,
 				_List_fromArray(
 					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$css(
-						_List_fromArray(
-							[
-								$rtfeldman$elm_css$Css$paddingBottom(
-								$rtfeldman$elm_css$Css$px(10))
-							]))
-					]),
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$text(plot.header)
-					])),
-				A2(
-				$rtfeldman$elm_css$Html$Styled$img,
-				_List_fromArray(
-					[
-						$rtfeldman$elm_css$Html$Styled$Attributes$src(plot.file),
 						$rtfeldman$elm_css$Html$Styled$Attributes$css(
 						_List_fromArray(
 							[
 								$rtfeldman$elm_css$Css$width(
 								$rtfeldman$elm_css$Css$px(700)),
 								$rtfeldman$elm_css$Css$maxWidth(
-								$rtfeldman$elm_css$Css$pct(100))
+								$rtfeldman$elm_css$Css$pct(100)),
+								$rtfeldman$elm_css$Css$textAlign($rtfeldman$elm_css$Css$center),
+								$rtfeldman$elm_css$Css$paddingBottom(
+								$rtfeldman$elm_css$Css$px(15)),
+								$rtfeldman$elm_css$Css$margin($rtfeldman$elm_css$Css$zero)
 							]))
 					]),
-				_List_Nil)
-			]));
+				_List_fromArray(
+					[
+						$rtfeldman$elm_css$Html$Styled$text(description)
+					]))
+			]);
+	} else {
+		return _List_Nil;
+	}
 };
+var $author$project$BonusPlots$viewPlot = F3(
+	function (header, file, maybeDescription) {
+		return A2(
+			$rtfeldman$elm_css$Html$Styled$div,
+			_List_fromArray(
+				[
+					$rtfeldman$elm_css$Html$Styled$Attributes$css(
+					_List_fromArray(
+						[
+							$rtfeldman$elm_css$Css$displayFlex,
+							$rtfeldman$elm_css$Css$flexDirection($rtfeldman$elm_css$Css$column),
+							$rtfeldman$elm_css$Css$alignItems($rtfeldman$elm_css$Css$center),
+							$rtfeldman$elm_css$Css$paddingBottom(
+							$rtfeldman$elm_css$Css$px(40)),
+							$rtfeldman$elm_css$Css$width(
+							$rtfeldman$elm_css$Css$pct(100))
+						]))
+				]),
+			_Utils_ap(
+				_List_fromArray(
+					[
+						A2(
+						$rtfeldman$elm_css$Html$Styled$h3,
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$Attributes$css(
+								_List_fromArray(
+									[
+										$rtfeldman$elm_css$Css$paddingBottom(
+										$rtfeldman$elm_css$Css$px(10)),
+										$rtfeldman$elm_css$Css$margin($rtfeldman$elm_css$Css$zero)
+									]))
+							]),
+						_List_fromArray(
+							[
+								$rtfeldman$elm_css$Html$Styled$text(header)
+							]))
+					]),
+				_Utils_ap(
+					$author$project$BonusPlots$viewDescription(maybeDescription),
+					_List_fromArray(
+						[
+							A2(
+							$rtfeldman$elm_css$Html$Styled$img,
+							_List_fromArray(
+								[
+									$rtfeldman$elm_css$Html$Styled$Attributes$src(file),
+									$rtfeldman$elm_css$Html$Styled$Attributes$css(
+									_List_fromArray(
+										[
+											$rtfeldman$elm_css$Css$width(
+											$rtfeldman$elm_css$Css$px(700)),
+											$rtfeldman$elm_css$Css$maxWidth(
+											$rtfeldman$elm_css$Css$pct(100))
+										]))
+								]),
+							_List_Nil)
+						]))));
+	});
 var $author$project$BonusPlots$view = function (model) {
 	return A2(
 		$rtfeldman$elm_css$Html$Styled$div,
@@ -9973,7 +10014,15 @@ var $author$project$BonusPlots$view = function (model) {
 								$rtfeldman$elm_css$Css$pct(100))
 							]))
 					]),
-				A2($elm$core$List$map, $author$project$BonusPlots$viewPlot, $author$project$BonusPlots$plotFiles))
+				_List_fromArray(
+					[
+						A3($author$project$BonusPlots$viewPlot, 'Example MaNGA SFH and Z Samples for 1-623722', 'Files/bonus_plots/example_MaNGA_samples_1-623722.png', $elm$core$Maybe$Nothing),
+						A3($author$project$BonusPlots$viewPlot, 'Diffusion Process for SFH/MH Inference - samples', 'Files/bonus_plots/inference_SFH_metallicity_4.gif', $elm$core$Maybe$Nothing),
+						A3($author$project$BonusPlots$viewPlot, 'Diffusion Process for SFH/MH Inference - spectrum', 'Files/bonus_plots/spectrum_diffusion_process_7565-56809-0737_fsps.gif', $elm$core$Maybe$Nothing),
+						A3($author$project$BonusPlots$viewPlot, 'PQMass Chi2 Comparison: TNG Train vs Test', 'Files/bonus_plots/chi2_TNG_train_vs_test.png', $elm$core$Maybe$Nothing),
+						A3($author$project$BonusPlots$viewPlot, 'PQMass Chi2 Comparison: Model Samples vs Test', 'Files/bonus_plots/chi2_test_300_0_TNG_vs_test.png', $elm$core$Maybe$Nothing),
+						A3($author$project$BonusPlots$viewPlot, 'PQMass Chi2 Comparison: TNG vs Eagle', 'Files/bonus_plots/chi2_tng_vs_eagle.png', $elm$core$Maybe$Nothing)
+					]))
 			]));
 };
 var $rtfeldman$elm_css$Css$left = $rtfeldman$elm_css$Css$prop1('left');
