@@ -41,15 +41,30 @@ update msg model =
 
 -- PLOTS
 
-
-plotFiles : List String
+plotFiles : List { file : String, header : String }
 plotFiles =
-  [ "sfh_Z_samples_fsps_mastar_Manga_1-231870.png"
-  , "inference_SFH_metallicity_4.gif"
-  , "spectrum_diffusion_process_7565-56809-0737_fsps.gif"
-  ]
-
-
+    [ { file = "Files/bonus_plots/example_MaNGA_samples_1-623722.png"
+      , header = "Example MaNGA SFH and Z Samples for 1-623722"
+      },
+      { file = "Files/bonus_plots/inference_SFH_metallicity_4.gif"
+      , header = "Diffusion Process for SFH/MH Inference - samples"
+      },
+      { file = "Files/bonus_plots/spectrum_diffusion_process_7565-56809-0737_fsps.gif"
+      , header = "Diffusion Process for SFH/MH Inference - spectrum"
+      },
+      { file = "Files/bonus_plots/spectrum_diffusion_process_7565-56809-0737_fsps.gif"
+      , header = "Diffusion Process for SFH/MH Inference - spectrum"
+      },
+      { file = "Files/bonus_plots/chi2_TNG_train_vs_test.png"
+      , header = "PQMass Chi2 Comparison: TNG Train vs Test"
+      },
+      { file = "Files/bonus_plots/chi2_test_300_0_TNG_vs_test.png"
+      , header = "PQMass Chi2 Comparison: Model Samples vs Test"
+      },
+      { file = "Files/bonus_plots/chi2_tng_vs_eagle.png"
+      , header = "PQMass Chi2 Comparison: TNG vs Eagle"
+      }
+    ]
 
 -- VIEW
 
@@ -78,15 +93,29 @@ view model =
     ]
 
 
-viewPlot : String -> Html Msg
-viewPlot filename =
-  img
-    [ src ("Files/bonus_plots/" ++ filename)
-    , css
-        [ Css.width (pct 90)
-        , maxWidth (px 900)
-        , borderRadius (px 10)
-        , marginBottom (px 30)
+viewPlot : { file : String, header : String } -> Html Msg
+viewPlot plot =
+    div
+        [ css
+            [ displayFlex
+            , flexDirection column
+            , alignItems center
+            , paddingBottom (px 30)
+            ]
         ]
-    ]
-    []
+        [ h3
+            [ css
+                [ paddingBottom (px 10)
+                ]
+            ]
+            [ text plot.header ]
+
+        , img
+            [ src plot.file
+            , css
+                [ Css.width (px 700)
+                 , maxWidth (pct 100)
+                ]
+            ]
+            []
+        ]
