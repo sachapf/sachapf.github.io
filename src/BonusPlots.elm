@@ -63,6 +63,11 @@ view model =
                 ]
             ]
             [ viewPlot
+                "Mass Estimates Comparison: TNG vs TNG"
+                "Files/bonus_plots/comparison_4_total_mass_log.png"
+                Nothing
+
+            , viewPlot
                 "Example MaNGA SFH and Z Samples for 1-623722"
                 "Files/bonus_plots/example_MaNGA_samples_1-623722.png"
                 Nothing
