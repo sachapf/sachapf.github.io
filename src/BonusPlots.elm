@@ -94,11 +94,11 @@ view model =
             ]
             , viewPlot
                 "SSP Mass Comparison"
-                "Files/bonus_plots/SSP Comparison Mass.png"
+                "Files/bonus_plots/SSP_Comparison_Mass.png"
                 (Just "MaNGA mass estimates for different choices of SSPs. Note - MaStar Salpeter uses 2.35 but isn't actually Salpeter")
             , viewPlot
                 "SSP Mass Comparison"
-                "Files/bonus_plots/SSP Comparison.png"
+                "Files/bonus_plots/SSP_Comparison.png"
                 (Just "MaNGA metallicity estimates for different choices of SSPs. Note - MaStar Salpeter uses 2.35 but isn't actually Salpeter")
         ]
 
