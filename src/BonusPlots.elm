@@ -91,7 +91,6 @@ view model =
                 "PQMass Chi2 Comparison: TNG vs Eagle"
                 "Files/bonus_plots/chi2_tng_vs_eagle.png"
                 (Just "PQMass for TNG versus Eagle. This shows that TNG and EAGLE are out-of-distribution with respect to each other.")
-            ]
             , viewPlot
                 "SSP Mass Comparison"
                 "Files/bonus_plots/SSP_Comparison_Mass.png"
@@ -100,6 +99,7 @@ view model =
                 "SSP Mass Comparison"
                 "Files/bonus_plots/SSP_Comparison.png"
                 (Just "MaNGA metallicity estimates for different choices of SSPs. Note - MaStar Salpeter uses 2.35 but isn't actually Salpeter")
+            ]
         ]
 
 
